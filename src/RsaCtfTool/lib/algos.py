@@ -49,9 +49,9 @@ def brent(N):
     if is_prime(N):
         return N
     while True:
-        y = randint(1, N-1)
-        c = randint(1, N-1)
-        m = randint(1, N-1)
+        y = randint(1, N - 1)
+        c = randint(1, N - 1)
+        m = randint(1, N - 1)
 
         g = 1
         r = 1
@@ -68,7 +68,7 @@ def brent(N):
                 ys = y
                 q = 1
 
-                for _ in range(min(m, r-k)):
+                for _ in range(min(m, r - k)):
                     y = (powmod(y, 2, N) + c) % N
                     q = q * abs(x - y) % N
 

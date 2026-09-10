@@ -255,7 +255,7 @@ class TestFactorXYXZ:
 class TestWiener:
     """Tests for wiener attack."""
 
-    def test_wiener_small(self): # example from WikiPedia
+    def test_wiener_small(self):  # example from WikiPedia
         p, q = 239, 379
         n = p * q
         e = 17993
