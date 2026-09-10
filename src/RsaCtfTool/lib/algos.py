@@ -941,8 +941,10 @@ def wiener(n, e, progress=True):
 
 
 def williams_pp1(n):
-    p, i2 = 2, isqrt(n)
+    i2 = isqrt(n)
     for v in count(1):
+        p = 2
+        # print("v =", v, "p =", p, flush=True)
         while True:
             e = ilogb(i2, p)
             if e == 0:
