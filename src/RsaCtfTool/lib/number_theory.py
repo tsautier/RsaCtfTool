@@ -737,4 +737,5 @@ __all__ = [
     is_pow2,
     is_lucas,
     find_period,
+    gmpy_version,
 ]

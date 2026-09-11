@@ -82,6 +82,48 @@ class TestBrent:
         result = brent(16)
         assert result == 2
 
+    def test_brent_retries_after_g_equals_n(self, monkeypatch):
+        import RsaCtfTool.lib.algos as algos
+
+        n = 15
+        params = iter([
+            1, 1, 1,  # First attempt.
+            2, 1, 1,  # Retry.
+        ])
+
+        monkeypatch.setattr(
+            algos,
+            "randint",
+            lambda _a, _b: next(params),
+        )
+
+        result = algos.brent(n)
+
+        assert result in (3, 5)
+        assert n % result == 0
+
+    def test_brent_uses_fresh_params_after_g_equals_n(self, monkeypatch):
+        import RsaCtfTool.lib.algos as algos
+
+        n = 15
+        params = iter([
+            1, 1, 1,  # First attempt.
+            2, 1, 1,  # Retry.
+        ])
+        calls = []
+
+        def fake_randint(a, b):
+            calls.append((a, b))
+            return next(params)
+
+        monkeypatch.setattr(algos, "randint", fake_randint)
+
+        result = algos.brent(n)
+
+        assert result in (3, 5)
+        assert n % result == 0
+        assert len(calls) == 6
+
 
 class TestPollardRho:
     """Tests for pollard_rho factorization."""

@@ -34,6 +34,7 @@ from RsaCtfTool.lib.number_theory import (
     mlucas,
     iroot,
     mulmod,
+    gmpy_version,
 )
 from RsaCtfTool.lib.number_theory import invmod, introot, find_period, is_prime, legendre, tonelli
 
@@ -381,7 +382,7 @@ def quadratic_sieve(n, B=None, M=None, progress=True, n_extra=10, max_retries=6)
     if n & 1 == 0:
         return 2, n // 2
 
-    if is_prime(n):
+    if gmpy_version > 0 and is_prime(n):
         return None
 
     if B is None:
