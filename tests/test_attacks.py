@@ -218,6 +218,54 @@ class TestECMAttack:
         assert result.returncode == 0
 
 
+class TestDixonAttack:
+    def test_dixon_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/dixon.pub",
+            "--private",
+            "--attack",
+            "dixon",
+        )
+        assert result.returncode == 0
+
+
+class TestFactor2PNAttack:
+    def test_factor_2pn_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/factor_2PN.pub",
+            "--private",
+            "--attack",
+            "factor_2PN",
+        )
+        assert result.returncode == 0
+
+
+class TestSystemPrimesGCDAttack:
+    def test_system_primes_gcd_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/system_primes_gcd.pub",
+            "--private",
+            "--attack",
+            "system_primes_gcd",
+        )
+        assert result.returncode == 0
+
+
+class TestSQUFOFAttack:
+    def test_squfof_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/SQUFOF.pub",
+            "--private",
+            "--attack",
+            "SQUFOF",
+        )
+        assert result.returncode == 0
+
+
 class TestSIQSAttack:
     @pytest.mark.slow
     def test_siqs_attack(self):
@@ -362,6 +410,77 @@ class TestSmallCRTExpAttack:
         assert result.returncode == 0
 
 
+class TestSmallQAttack:
+    def test_smallq_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/small_q.pub",
+            "--private",
+            "--attack",
+            "smallq",
+        )
+        assert result.returncode == 0
+
+
+class TestSmallQAttack:
+    def test_smallq_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/small_q.pub",
+            "--private",
+            "--attack",
+            "smallq",
+        )
+        assert result.returncode == 0
+
+
+class TestPollardStrassenAttack:
+    def test_pollard_strassen_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/elite_primes.pub",
+            "--private",
+            "--attack",
+            "pollard_strassen",
+        )
+        assert result.returncode == 0
+
+
+class TestBrentAttack:
+    def test_brent_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/elite_primes.pub",
+            "--private",
+            "--attack",
+            "brent",
+        )
+        assert result.returncode == 0
+
+
+class TestWilliamsPP1Attack:
+    def test_williams_pp1_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/elite_primes.pub",
+            "--private",
+            "--attack",
+            "williams_pp1",
+        )
+        assert result.returncode == 0
+
+
+class TestZ3SolverAttack:
+    def test_z3_solver_attack(self):
+        result = _run(
+            "--publickey",
+            "examples/z3.pub",
+            "--private",
+            "--attack",
+            "z3_solver",
+        )
+        assert result.returncode == 0
+
 class TestSameNHugeEAttack:
     def test_same_n_huge_e_attack(self):
         n = "111381961169589927896512557754289420474877632607334685306667977794938824018345795836303161492076539375959731633270626091498843936401996648820451019811592594528673182109109991384472979198906744569181673282663323892346854520052840694924830064546269187849702880332522636682366270177489467478933966884097824069977"
@@ -380,4 +499,65 @@ class TestRecoverPQFromNED:
         n = "89934323724424476294622381914221598261172812339375937399819972835334987445410253468222803336854810492858522510908818094465016971590866316799035894022707639444280657007098400914330738658538222266810030027839572053039403693393753168793586929250804215645550571352191199523184200836146013025928003383641371070393"
         d = "19962381665611835400733506106568527547878006333840452894627174646926439452040571847997880893864945423800493262831539082048043118936361632520188216585262183981035631032111326630882344091716101231068324973284629229989266282536689424414069614476142574917412326437716108488193134735278253062332252976826038348973"
         result = _run("--private", "-n", n, "-e", "65537", "-d", d)
+        assert result.returncode == 0
+
+class TestAdditionalSingleKeyAttacks:
+    def test_factorial_pm1_gcd(self):
+        result = _run("--publickey", "examples/factorial_pm1_gcd.pub",
+                      "--private", "--attack", "factorial_pm1_gcd")
+        assert result.returncode == 0
+
+    def test_hart(self):
+        result = _run("--publickey", "examples/hart.pub",
+                      "--private", "--attack", "hart")
+        assert result.returncode == 0
+
+    def test_highandlowbitsequal(self):
+        result = _run("--publickey", "examples/highandlowbitsequal.pub",
+                      "--private", "--attack", "highandlowbitsequal")
+        assert result.returncode == 0
+
+    def test_kraitchik(self):
+        result = _run("--publickey", "examples/kraitchik.pub",
+                      "--private", "--attack", "kraitchik")
+        assert result.returncode == 0
+
+    def test_lehmer(self):
+        result = _run("--publickey", "examples/lehmer.pub",
+                      "--private", "--attack", "lehmer")
+        assert result.returncode == 0
+
+    def test_londahl(self):
+        result = _run("--publickey", "examples/londahl.pub",
+                      "--private", "--attack", "londahl")
+        assert result.returncode == 0
+
+    def test_lucas_gcd(self):
+        result = _run("--publickey", "examples/lucas_gcd.pub",
+                      "--private", "--attack", "lucas_gcd")
+        assert result.returncode == 0
+
+    def test_mersenne_primes(self):
+        result = _run("--publickey", "examples/mersenne_primes.pub",
+                      "--private", "--attack", "mersenne_primes")
+        assert result.returncode == 0
+
+    def test_multiple_base_inversion_gcd(self):
+        result = _run("--publickey", "examples/multiple_base_inversion_gcd.pub",
+                      "--private", "--attack", "multiple_base_inversion_gcd")
+        assert result.returncode == 0
+
+    def test_pisano_period(self):
+        result = _run("--publickey", "examples/pisano_period.pub",
+                      "--private", "--attack", "pisano_period")
+        assert result.returncode == 0
+
+    def test_pollard_p_1(self):
+        result = _run("--publickey", "examples/pollard_p_1.pub",
+                      "--private", "--attack", "pollard_p_1")
+        assert result.returncode == 0
+
+    def test_strong_pseudoprime(self):
+        result = _run("--publickey", "examples/strong_pseudoprime.pub",
+                      "--private", "--attack", "strong_pseudoprime")
         assert result.returncode == 0
